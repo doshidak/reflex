@@ -1,3 +1,5 @@
+@use "sass:math";
+
 // --------------------------------------------------
 // reflex mixins
 // --------------------------------------------------
@@ -13,9 +15,9 @@
 @mixin calc-reflex-columns($index, $class, $type) {
     @if $type == width and $index > 0 {
         .#{$reflex-prefix}#{$class}#{$index} {
-            width: percentage(($index / $reflex-columns));
+            width: percentage(math.div($index, $reflex-columns));
             @if $legacy-support == true {
-                *width: percentage(($index / $reflex-columns)) - .1; // ie7 css hack
+                *width: percentage(math.div($index, $reflex-columns)) - .1; // ie7 css hack
             }
         }
     }
@@ -105,14 +107,14 @@
 // offset class generation mixins
 // --------------------------------------------------
 @mixin offset($index: 0) {
-    $offset: ($index / $reflex-columns);
+    $offset: math.div($index, $reflex-columns);
     // convert to percentage only if not zero
     @if $offset != 0 {
         $offset: percentage($offset);
     }
     margin-left: $offset;
     @if $legacy-support == true {
-        *margin-left: percentage(($index / $reflex-columns)) - .1; // ie7 css hack
+        *margin-left: percentage(math.div($index, $reflex-columns)) - .1; // ie7 css hack
     }
 }
 
@@ -321,7 +323,6 @@
                     display: none;
                 }
             }
-        
 
             .#{$reflex-prefix}hidden-#{$bp}-down {
                 @include media-breakpoint-down($bp) {
