@@ -27,15 +27,15 @@
   "homepage": "reflexgrid.com",
   "scripts": {
     "build": "yarn build:min && yarn build:max",
-    "build:min": "npx node-sass-chokidar --precision 8 --output-style compressed scss/reflex.scss css/reflex.min.css",
-    "build:max": "npx node-sass-chokidar --precision 8 --output-style expanded scss/reflex.scss css/reflex.css",
-    "watch": "npx node-sass-chokidar --watch --recursive --precision 8 --output-style expanded scss/reflex.scss css/reflex.css",
-    "build:docs": "npx node-sass-chokidar --precision 8 --output-style expanded docs/scss/docs.scss docs/css/docs.css",
-    "watch:docs": "npx node-sass-chokidar --watch --recursive --precision 8 --output-style expanded docs/scss/docs.scss docs/css/docs.css",
+    "build:min": "npx sass --color --style compressed scss/reflex.scss:css/reflex.min.css",
+    "build:max": "npx sass --color --style expanded scss/reflex.scss:css/reflex.css",
+    "watch": "npx sass --color --watch --style expanded scss/reflex.scss:css/reflex.css",
+    "build:docs": "npx sass --color --style expanded docs/scss/docs.scss:docs/css/docs.css",
+    "watch:docs": "npx sass --color --watch --style expanded docs/scss/docs.scss:docs/css/docs.css",
     "start": "npx http-server ./docs -a localhost -c10"
   },
   "devDependencies": {
     "http-server": "^0.12.3",
-    "node-sass-chokidar": "^1.5.0"
+    "sass": "^1.34.1"
   }
 }
